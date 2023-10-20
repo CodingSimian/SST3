@@ -6,6 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/SSTServiceRegistryV3/pom.xml" />
         <option value="$PROJECT_DIR$/API-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/Played-Media-Service/pom.xml" />
       </list>
     </option>
   </component>
