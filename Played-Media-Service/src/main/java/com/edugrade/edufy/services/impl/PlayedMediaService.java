@@ -41,8 +41,10 @@ public class PlayedMediaService implements PlayedMediaServiceInterface {
 	
 	public Media getMediaDetails(PlayedMedia playedMedia) {
 		String url = "http://localhost:8080/media-service/api/v1/media/" + playedMedia.getMediaId();
+		System.out.println(url);
 		Media media = restTemplate.getForObject(url, Media.class);
 		media.setNumberOfPlays(playedMedia.getNumberOfPlays());
+		System.out.println(media);
 		return media;
 	}
 
