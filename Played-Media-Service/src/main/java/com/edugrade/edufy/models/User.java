@@ -22,7 +22,7 @@ public class User {
 
 	public User() {
 	}
-	
+
 	public User(Long userId) {
 		this.userId = userId;
 	}
@@ -39,23 +39,19 @@ public class User {
 	public List<PlayedMedia> getPlayedMedia() {
 		return playedMedia;
 	}
-	
+
+	public void setPlayedMedia(List<PlayedMedia> playedMedia) {
+		this.playedMedia = playedMedia;
+	}
+
 	public void addPlayedMedia(PlayedMedia playedMedia) {
 		this.playedMedia.add(playedMedia);
 	}
-	
+
 	public PlayedMedia getPlayedMediaById(Long playedMediaId) {
 		return this.playedMedia.get(playedMediaId.intValue());
 	}
-	
-//	public PlayedMedia getPlayedMediaByType(String mediaType) {
-//		return this.playedMedia.stream().filter(t -> t.getMediaType().equals(mediaType)).findFirst().orElse(null);
-//	}
-	
-	public boolean playedMediaExists(PlayedMedia playedMedia) {
-		return this.playedMedia.contains(playedMedia);
-	}
-	
+
 	public void removePlayedMedia(PlayedMedia playedMedia) {
 		this.playedMedia.remove(playedMedia);
 	}

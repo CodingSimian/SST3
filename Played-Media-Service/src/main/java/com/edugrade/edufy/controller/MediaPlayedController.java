@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.edugrade.edufy.models.PlayedMedia;
 import com.edugrade.edufy.models.User;
-import com.edugrade.edufy.models.vo.Media;
+import com.edugrade.edufy.models.dto.PlayedMediaDTO;
+import com.edugrade.edufy.models.dto.UserDTO;
 import com.edugrade.edufy.services.impl.UserService;
 
 @RestController
@@ -28,8 +29,18 @@ public class MediaPlayedController {
 	}
 
 	@GetMapping("/{userId}")
-	public ResponseEntity<User> getUserDetails(@PathVariable Long userId) {
+	public ResponseEntity<UserDTO> getUserDetails(@PathVariable Long userId) {
 		return ResponseEntity.ok(userService.getUserDetails(userId));
+	}
+
+	@GetMapping("/")
+	public ResponseEntity<List<UserDTO>> getAllUsers() {
+		return ResponseEntity.ok(userService.getAllUsers());
+	}
+	
+	@PostMapping("/")
+	public ResponseEntity<UserDTO> addUser(@RequestBody User user) {
+		return ResponseEntity.ok(userService.addUser(user));
 	}
 
 	@DeleteMapping("/{userId}")
@@ -37,28 +48,20 @@ public class MediaPlayedController {
 		return ResponseEntity.ok(userService.deleteUserDetails(userId));
 	}
 
-	@PostMapping("/")
-	public ResponseEntity<User> addUser(@RequestBody User user) {
-		return ResponseEntity.ok(userService.addUser(user)); 
-	}
-
 	@PostMapping("/{userId}/playedmedia")
-	public ResponseEntity<PlayedMedia> addPlayedMedia(@PathVariable Long userId, @RequestBody PlayedMedia playedMedia) {
+	public ResponseEntity<PlayedMediaDTO> addPlayedMedia(@PathVariable Long userId,
+			@RequestBody PlayedMedia playedMedia) {
 		return ResponseEntity.ok(userService.addPlayedMedia(userId, playedMedia));
 	}
-
-	@GetMapping("/{userId}/playedmedia/mostplayed")
-	public ResponseEntity<List<PlayedMedia>> getMostPlayedMedia(@PathVariable Long userId) {
-		return ResponseEntity.ok(userService.getMostPlayedMedia(userId));
-	}
 	
-	@GetMapping("/{userId}/test")
-	public ResponseEntity<List<Media>> getMedia(@PathVariable Long userId) {
-		return ResponseEntity.ok(userService.getPlayedMedia(userId));
+	@DeleteMapping("/playedmedia/{mediaId}")
+	public ResponseEntity<String> deleteMedia(@PathVariable String mediaId) {
+		return ResponseEntity.ok(userService.deleteMediaById(mediaId));
 	}
 	
 	@GetMapping("/{userId}/playedmedia")
-	public ResponseEntity<List<PlayedMedia>> getAllPlayedMedia(@PathVariable Long userId) {
-		return ResponseEntity.ok(userService.getAllPlayedMedia(userId));
+	public ResponseEntity<List<PlayedMediaDTO>> getMostPlayedMedia(@PathVariable Long userId) {
+		return ResponseEntity.ok(userService.getPlayedMedia(userId));
 	}
+
 }

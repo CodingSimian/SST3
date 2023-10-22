@@ -31,7 +31,7 @@ public class PlayedMedia {
 	public Long getPlayedMediaId() {
 		return playedMediaId;
 	}
-	
+
 	public int getNumberOfPlays() {
 		return numberOfPlays;
 	}
@@ -46,6 +46,8 @@ public class PlayedMedia {
 
 	@Override
 	public String toString() {
-		return "PlayedMedia [mediaId=" + mediaId + ", numberOfPlayes=" + numberOfPlays + "]";
+		return "PlayedMedia [playedMediaId=" + playedMediaId + ", mediaId=" + mediaId + ", numberOfPlays="
+				+ numberOfPlays + "]";
 	}
+
 }

@@ -15,7 +15,7 @@ public class PlayedMediaService2Application {
 	}
 	
 	@Bean
-	public RestTemplate restTemplate() {
+	public RestTemplate restTemplate() { 
 		return new RestTemplate();
 	}
 	

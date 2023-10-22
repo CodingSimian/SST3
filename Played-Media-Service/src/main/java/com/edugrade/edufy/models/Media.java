@@ -1,22 +1,25 @@
-package com.edugrade.edufy.models.vo;
+package com.edugrade.edufy.models;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Media {
+
 	private String mediaId;
 	private String title;
 	private String mediaType;
 	private String url;
 	private String releaseDate;
-	private int numberOfPlays;
-
-	public int getNumberOfPlays() {
-		return numberOfPlays;
-	}
-
-	public void setNumberOfPlays(int numberOfPlays) {
-		this.numberOfPlays = numberOfPlays;
-	}
+	private List<String> genres;
+	private List<String> artists;
 
 	public Media() {
+	}
+
+	public Media(String mediaId) {
+		this.mediaId = mediaId;
 	}
 
 	public String getMediaId() {
@@ -59,10 +62,26 @@ public class Media {
 		this.releaseDate = releaseDate;
 	}
 
+	public List<String> getGenres() {
+		return genres;
+	}
+
+	public void setGenres(List<String> genres) {
+		this.genres = genres;
+	}
+
+	public List<String> getArtists() {
+		return artists;
+	}
+
+	public void setArtists(List<String> artists) {
+		this.artists = artists;
+	}
+
 	@Override
 	public String toString() {
 		return "Media [mediaId=" + mediaId + ", title=" + title + ", mediaType=" + mediaType + ", url=" + url
-				+ ", releaseDate=" + releaseDate + ", numberOfPlays=" + numberOfPlays + "]";
+				+ ", releaseDate=" + releaseDate + "]";
 	}
 
 }
