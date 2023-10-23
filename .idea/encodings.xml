@@ -4,5 +4,6 @@
     <file url="file://$PROJECT_DIR$/API-gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/SSTServiceRegistryV3/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Played-Media-Service/src/main/java" charset="UTF-8" />
+     <file url="file://$PROJECT_DIR$/Rating-Service/src/main/java" charset="UTF-8" />
   </component>
 </project>
