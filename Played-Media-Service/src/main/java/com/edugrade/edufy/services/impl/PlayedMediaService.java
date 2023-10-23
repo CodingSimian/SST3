@@ -48,8 +48,8 @@ public class PlayedMediaService implements PlayedMediaServiceInterface {
 				playedMedia.getNumberOfPlays());
 	}
 	
-	private List<PlayedMedia> findPlayedMediaByMediaId(String playedMediaId) throws ResourceNotFoundException{
-		return playedMediaRepository.findByMediaId(playedMediaId)
+	private List<PlayedMedia> findPlayedMediaByMediaId(String playedMediaId) throws ResourceNotFoundException{		
+		return playedMediaRepository.findByMediaId(playedMediaId).filter(list -> !list.isEmpty())
 				.orElseThrow(() -> new ResourceNotFoundException("Media", "ID", playedMediaId));
 	}
 
