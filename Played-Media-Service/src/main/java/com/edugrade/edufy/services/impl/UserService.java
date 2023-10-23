@@ -47,15 +47,14 @@ public class UserService implements UserServiceInterface {
 
 	@Override
 	public List<UserDTO> getAllUsers() {
-		return userRepository.findAll().stream().map(user -> {
-			return new UserDTO(user.getUserId(), getPlayedMedia(user.getUserId()));
-		}).collect(Collectors.toList());
+		return userRepository.findAll().stream()
+				.map(user -> new UserDTO(user.getUserId(), getPlayedMedia(user.getUserId()))).toList();
 	}
 
 	public PlayedMediaDTO addPlayedMedia(Long userId, PlayedMedia playedMedia) {
 		User user = getUserById(userId);
-		return user.getPlayedMedia().stream().filter(media -> media.getMediaId().equals(playedMedia.getMediaId())).findFirst()
-				.map(playedMediaService::updatePlayedMedia).orElseGet(() -> {
+		return user.getPlayedMedia().stream().filter(media -> media.getMediaId().equals(playedMedia.getMediaId()))
+				.findFirst().map(playedMediaService::updatePlayedMedia).orElseGet(() -> {
 					user.addPlayedMedia(playedMedia);
 					return playedMediaService.addPlayedMedia(playedMedia);
 				});
@@ -70,10 +69,10 @@ public class UserService implements UserServiceInterface {
 		removeMediaFromUsers(mediaId);
 		return playedMediaService.deletePlayedMedia(mediaId);
 	}
-	
+
 	private void removeMediaFromUsers(String mediaId) {
 		userRepository.findAll().forEach(user -> {
-		    user.getPlayedMedia().removeIf(media -> media.getMediaId().equals(mediaId));
+			user.getPlayedMedia().removeIf(media -> media.getMediaId().equals(mediaId));
 		});
 	}
 
