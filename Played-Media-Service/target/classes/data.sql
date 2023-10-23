@@ -1,6 +1,6 @@
-
-INSERT INTO users (user_id) VALUES (1);
 /*
+INSERT INTO users (user_id) VALUES (1);
+
 insert into played_media(media_type, number_of_plays) VALUES ('Music', 2), ('Pod', 8), ('Movie', 4);
 insert into played_media(media_type, number_of_plays) VALUES ('Music', 4), ('Pod', 2), ('Movie', 8);
 
