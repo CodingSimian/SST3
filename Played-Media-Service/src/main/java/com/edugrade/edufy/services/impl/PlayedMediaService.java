@@ -54,7 +54,7 @@ public class PlayedMediaService implements PlayedMediaServiceInterface {
 	}
 
 	private Media getMediaDetailsFromApi(String mediaId) {
-		String url = "http://localhost:8080/media/" + mediaId;
+		String url = "http://localhost:8080/media-service/media/" + mediaId;
 		try {
 			return restTemplate.getForEntity(url, Media.class).getBody();
 		} catch (RestClientException e) {
