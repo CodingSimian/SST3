@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.edugrade.edufy.models.Media3;
+import com.edugrade.edufy.services.impl.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,6 +29,9 @@ public class RatingController {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private RatingService ratingService;
 
 	public RatingController() {
 	}
@@ -70,6 +75,12 @@ public class RatingController {
 	public ResponseEntity<String> deleteUser(@PathVariable Long userId) {
 		return ResponseEntity.ok(userService.deleteUser(userId));
 	}
+	@GetMapping("/recomendation/{userId}")
+	public ResponseEntity<List<Media3>> getRecomendations(@PathVariable Long userId){
+		return ResponseEntity.ok((ratingService.getRecommendationsForUser(userId)));
+	}
+
+
 
 	
 
