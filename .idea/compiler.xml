@@ -8,6 +8,8 @@
         <outputRelativeToContentRoot value="true" />
         <module name="SSTServiceRegistryV3" />
         <module name="API-gateway" />
+        <module name="Played-Media-Service" />
+        <module name="Rating-Service" />
       </profile>
     </annotationProcessing>
   </component>
@@ -15,6 +17,8 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="API-gateway" options="-parameters" />
       <module name="SSTServiceRegistryV3" options="-parameters" />
+      <module name="Played-Media-Service" options="-parameters" />
+      <module name="Rating-Service" options="-parameters" />
     </option>
   </component>
 </project>
