@@ -87,7 +87,7 @@ public class RatingService implements RatingServiceInterface {
 		List<Media3> genre2 = fetchMediaByGenre(topGenres.get(1));
 		List<Media3> genre3 = fetchMediaByGenre(topGenres.get(2));
 
-		List<Media3> playedMedia3 = fetchMedia(dbRatings);
+		List<Media3> playedMedia3 = fetchPlayedMedia(userId);
 
 		List<ObjectId> playedMediaId = new ArrayList<>();
 		for(Media3 media3 : playedMedia3){
@@ -210,14 +210,14 @@ public class RatingService implements RatingServiceInterface {
 		throw new NoSuchElementException();
 	}
 
-	public List<Media> fetchMediaByGenres(List<String> genres){
+	public List<Media3> fetchMediaByGenres(List<String> genres){
 		String genresUrl = "";
 		for(String genre:genres){
 			genresUrl += ","+genre;
 		}
 
 		try{
-			ResponseEntity<Media[]> response = restTemplate.getForEntity(mediaUrl +"/genres/"+genresUrl, Media[].class);
+			ResponseEntity<Media3[]> response = restTemplate.getForEntity(mediaUrl +"/genres/"+genresUrl, Media3[].class);
 			if(response.hasBody()) {
 
 
@@ -236,10 +236,10 @@ public class RatingService implements RatingServiceInterface {
 
 
 
-	private List<Media> fetchPlayedMedia(Long userId) {
+	private List<Media3> fetchPlayedMedia(Long userId) {
 
 		try{
-			ResponseEntity<Media[]> response = restTemplate.getForEntity("PLAYED-MEDIA-SERVICE/" + userId +"/playedMedia", Media[].class);
+			ResponseEntity<Media3[]> response = restTemplate.getForEntity("http://localhost:8080//played-media-service/api/v1/users/" + userId + "/playedmedia", Media3[].class);
 			if( response.hasBody()) {
 				return Arrays.asList(response.getBody());
 			}
