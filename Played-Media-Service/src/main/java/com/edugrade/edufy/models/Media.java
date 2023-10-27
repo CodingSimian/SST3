@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Media {
 
-	private String mediaId;
+	private String id;
 	private String title;
 	private String mediaType;
 	private String url;
@@ -18,16 +18,16 @@ public class Media {
 	public Media() {
 	}
 
-	public Media(String mediaId) {
-		this.mediaId = mediaId;
+	public Media(String id) {
+		this.id = id;
 	}
 
-	public String getMediaId() {
-		return mediaId;
+	public String getId() {
+		return id;
 	}
 
-	public void setMediaId(String mediaId) {
-		this.mediaId = mediaId;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getTitle() {
@@ -80,7 +80,7 @@ public class Media {
 
 	@Override
 	public String toString() {
-		return "Media [mediaId=" + mediaId + ", title=" + title + ", mediaType=" + mediaType + ", url=" + url
+		return "Media [mediaId=" + id + ", title=" + title + ", mediaType=" + mediaType + ", url=" + url
 				+ ", releaseDate=" + releaseDate + "]";
 	}
 

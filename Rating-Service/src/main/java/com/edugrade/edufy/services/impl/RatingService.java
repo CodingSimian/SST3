@@ -4,6 +4,7 @@ import java.util.*;
 
 import com.edugrade.edufy.models.Media3;
 import com.edugrade.edufy.models.dto.ObjectIdDto;
+import com.edugrade.edufy.models.dto.PlayedMediaDTO;
 import com.edugrade.edufy.repositories.UserRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,6 +89,8 @@ public class RatingService implements RatingServiceInterface {
 		List<Media3> genre3 = fetchMediaByGenre(topGenres.get(2));
 
 		List<Media3> playedMedia3 = fetchPlayedMedia(userId);
+
+
 
 		List<ObjectId> playedMediaId = new ArrayList<>();
 		for(Media3 media3 : playedMedia3){
@@ -237,11 +240,16 @@ public class RatingService implements RatingServiceInterface {
 
 
 	private List<Media3> fetchPlayedMedia(Long userId) {
-
+		System.out.println("http://localhost:8080/played-media-service/api/v1/users/" + userId + "/playedmedia");
 		try{
-			ResponseEntity<Media3[]> response = restTemplate.getForEntity("http://localhost:8080//played-media-service/api/v1/users/" + userId + "/playedmedia", Media3[].class);
+			ResponseEntity<PlayedMediaDTO[]> response = restTemplate.getForEntity("http://localhost:8080/played-media-service/api/v1/users/" + userId + "/playedmedia", PlayedMediaDTO[].class);
 			if( response.hasBody()) {
-				return Arrays.asList(response.getBody());
+				List<Media3> media3s = new ArrayList<>();
+				for(PlayedMediaDTO dto: Arrays.stream(response.getBody()).toList()){
+					media3s.add(new Media3(new ObjectId(dto.media().getId())));
+				}
+				System.out.println(media3s.size());
+				return media3s;
 			}
 
 
@@ -249,6 +257,9 @@ public class RatingService implements RatingServiceInterface {
 			exc.printStackTrace();
 		}
 		throw new NoSuchElementException();
+
+
+
 	}
 
 

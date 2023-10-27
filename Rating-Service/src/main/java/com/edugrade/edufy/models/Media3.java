@@ -33,6 +33,10 @@ public class Media3 {
             this.artists = artists;
         }
 
+        public Media3(ObjectId id){
+            this.id = id;
+        }
+
         public ObjectId getId() {
             return id;
         }
